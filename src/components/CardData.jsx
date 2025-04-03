@@ -1,4 +1,4 @@
-import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { Card, Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { fecthData } from "../api/api";
 import { useEffect, useState } from "react";
 import useGlobalData from "../hooks/useGlobalData";
@@ -52,53 +52,61 @@ export default function CardsWars({ dataName }) {
           gap: "10px",
         }}
       >
-        {data.map((item, index) => (
-          <Col key={index} xs="auto">
-            <Card
-              bg="dark"
-              style={{ minWidth: "300px", width: "auto" }}
-              text="danger"
-              className="border-info"
-            >
-              <Card.Header>
-                <h1 className="h5">{item.properties.name}</h1>
-              </Card.Header>
-              <Card.Body>
-                {dataName === "people" && (
-                  <>
-                    <h5> Gender: {item.properties.gender || "nada"}</h5>
-                    <h5>Hair Color: {item.properties.hair_color || "nada"}</h5>
-                    <h5>Eye Color: {item.properties.eye_color || "nada"}</h5>
-                    <h5>aaaa{item.uid}</h5>
-                  </>
-                )}
-                {dataName === "vehicles" && (
-                  <>
-                    <h5> Model: {item.properties.model}</h5>
-                    <h5>Passengers: {item.properties.passengers}</h5>
-                  </>
-                )}
-                {dataName === "planets" && (
-                  <>
-                    <h5>Population: {item.properties.population}</h5>
-                    <h5>Climate: {item.properties.climate}</h5>
-                  </>
-                )}
-              </Card.Body>
-              <Card.Footer className="d-flex justify-content-between">
-                <Button onClick={() => handleDetails(item)}>Learn more</Button>
-                <Button
-                  variant="outline-warning"
-                  onClick={() => handleFavorite(item)}
-                >
-                  <h3>
-                    <i className="bi bi-suit-heart"></i>
-                  </h3>
-                </Button>
-              </Card.Footer>
-            </Card>
-          </Col>
-        ))}
+        {data.length > 0 ? (
+          data.map((item, index) => (
+            <Col key={index} xs="auto">
+              <Card
+                bg="dark"
+                style={{ minWidth: "300px", width: "auto" }}
+                text="danger"
+                className="border-info"
+              >
+                <Card.Header>
+                  <h1 className="h5">{item.properties.name}</h1>
+                </Card.Header>
+                <Card.Body>
+                  {dataName === "people" && (
+                    <>
+                      <h5> Gender: {item.properties.gender || "nada"}</h5>
+                      <h5>
+                        Hair Color: {item.properties.hair_color || "nada"}
+                      </h5>
+                      <h5>Eye Color: {item.properties.eye_color || "nada"}</h5>
+                      <h5>aaaa{item.uid}</h5>
+                    </>
+                  )}
+                  {dataName === "vehicles" && (
+                    <>
+                      <h5> Model: {item.properties.model}</h5>
+                      <h5>Passengers: {item.properties.passengers}</h5>
+                    </>
+                  )}
+                  {dataName === "planets" && (
+                    <>
+                      <h5>Population: {item.properties.population}</h5>
+                      <h5>Climate: {item.properties.climate}</h5>
+                    </>
+                  )}
+                </Card.Body>
+                <Card.Footer className="d-flex justify-content-between">
+                  <Button onClick={() => handleDetails(item)}>
+                    Learn more
+                  </Button>
+                  <Button
+                    variant="outline-warning"
+                    onClick={() => handleFavorite(item)}
+                  >
+                    <h3>
+                      <i className="bi bi-suit-heart"></i>
+                    </h3>
+                  </Button>
+                </Card.Footer>
+              </Card>
+            </Col>
+          ))
+        ) : (
+          <Spinner animation="border" variant="warning" />
+        )}
       </Row>
     </Container>
   );
