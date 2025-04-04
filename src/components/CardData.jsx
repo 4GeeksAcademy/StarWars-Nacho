@@ -30,6 +30,15 @@ export default function CardsWars({ dataName }) {
     };
     if (!store.favorite.some((store) => store.id === item._id)) {
       dispatch({ type: "ADD", payload: dataFavorite });
+    } else {
+      dispatch({ type: "DELETE", payload: item._id });
+    }
+  };
+  const isFavorite = (item) => {
+    if (store.favorite.some((fav) => fav.id === item._id)) {
+      return "bi bi-suit-heart-fill";
+    } else {
+      return "bi bi-suit-heart";
     }
   };
   const handleDetails = (item) => {
@@ -97,7 +106,7 @@ export default function CardsWars({ dataName }) {
                     onClick={() => handleFavorite(item)}
                   >
                     <h3>
-                      <i className="bi bi-suit-heart"></i>
+                      <i className={isFavorite(item)}></i>
                     </h3>
                   </Button>
                 </Card.Footer>

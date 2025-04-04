@@ -9,8 +9,8 @@ import Details from "./pages/details";
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<App />} errorElement={<h1>Not found!</h1>} />
-      <Route path="/details" element={<Details className="star-wars-text" />} />
+      <Route path="/" element={<App  />} errorElement={<h1>Not found!</h1>} />
+      <Route path="/details" element={<Details  />} />
     </>
   )
 );

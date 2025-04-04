@@ -34,7 +34,9 @@ export default function HeaderBar() {
               ? store.favorite.map((item, index) => {
                   return (
                     <div className="d-flex" key={index}>
-                      <NavDropdown.Item onClick={() => handleDetails(item)}>
+                      <NavDropdown.Item
+                        onClick={() => handleDetails(item)}
+                      >
                         {item.data.name}
                       </NavDropdown.Item>
                       <Button variant="outline">

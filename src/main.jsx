@@ -10,7 +10,7 @@ import "./main.css";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <DataProvider>
-      <RouterProvider router={router} className="star-wars-text" />
+      <RouterProvider router={router}  />
     </DataProvider>
   </StrictMode>
 );
