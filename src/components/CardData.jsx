@@ -49,7 +49,6 @@ export default function CardsWars({ dataName }) {
     };
     navigate("/details", { state: info });
   };
-  console.log(data);
   return (
     <Container fluid style={{ marginTop: "150px" }}>
       <h1 className="star-wars-text">{dataName}</h1>

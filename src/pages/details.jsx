@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 export default function Details() {
   const location = useLocation();
   const info = location.state;
-  console.log(info);
   return (
     <>
       <HeaderBar></HeaderBar>
@@ -16,9 +15,10 @@ export default function Details() {
         {info.category === "people" && (
           <>
             <Col>
-              <h1 style={{ fontSize: "50px", marginTop: "450px" }}>
+              <h1 style={{ fontSize: "50px", marginTop: "200px" }}>
                 {info.data.name}
               </h1>
+              <img src={info.data.image} alt="image" width="300px" />
             </Col>
             <Col style={{ fontSize: "30px", marginTop: "300px" }}>
               <Row className="border text-center">

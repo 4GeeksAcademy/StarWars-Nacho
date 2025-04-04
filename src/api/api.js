@@ -11,7 +11,15 @@ async function fecthData(name) {
 
         const promises = result.results.map(async (item) => {
             const response = await fetch(item.url);
-            const result = await response.json();
+
+            let result = await response.json();
+            if (name === "people") {
+                console.log(result.result.uid);
+                const extraData = await fetch(`https://akabab.github.io/starwars-api/api/id/${result.result.uid}.json`);
+                const extraJson = await extraData.json();
+                result.result.properties.image = extraJson.image;
+
+            }
             return result.result;
         });
 
@@ -22,7 +30,6 @@ async function fecthData(name) {
 
 
     const data = JSON.parse(localStorage.getItem(name))
-    console.log(data)
     return data
 }
 
